@@ -1,5 +1,6 @@
 import tkinter as tk
-from  tkinter import ttk
+# from  tkinter import ttk
+import ttkbootstrap  as ttk # makes all ttk widgets better
 
 def convert():
     # 1m = 1,609km
@@ -9,7 +10,7 @@ def convert():
     # print(f'{miles} miles = {km} kilometers')
 
 # create a window
-window = tk.Tk()
+window = ttk.Window(themename='darkly') # window = tk.Tk() | Now we can add themes to window
 window.title('Miles to km')
 window.geometry('300x150')
 
