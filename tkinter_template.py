@@ -2,7 +2,9 @@ import tkinter as tk
 import ttkbootstrap  as ttk
 
 # create a window
+# window = tk.Tk()
 window = ttk.Window(themename='darkly')
+# window = ttk.Window(themename='flatly')
 window.title('Widget\'s connection')
 window.geometry('1000x1000')
 
@@ -86,6 +88,26 @@ window.geometry('1000x1000')
 # # spin['value'] = (1,2,3,4,5)
 # # spin['value'] = ('A', 'B', 'C')
 # spin.pack()
+
+# canvas
+canvas = tk.Canvas(window, bg='white', width=250, height=250)
+canvas.pack()
+
+canvas.create_polygon((0,0,100,200,300,50, 150,-50), fill='black')  
+canvas.create_rectangle((50, 20, 100, 200),fill= 'grey', width=10, dash= (4,4), outline='yellow') # width = border width
+canvas.create_line((0,0,100,150), fill='blue')
+canvas.create_oval((0,0,100,100), fill='blue')
+canvas.create_arc((0,0,100,100), 
+                  fill='red',  
+                  start = 90, # start - degrees to rotate left
+                  extent = 90, # default arc degree is 90 (1/4 of circle)
+                  # style = tk.ARC, # no fill, just border
+                  style = tk.CHORD, # to fill circle without touching the center
+                  outline = 'red',
+                  width = 1)
+canvas.create_text((200,200), text='some text', fill='green', width=50, font='24') # x,y of center of text
+
+canvas.create_window((50,100), window=ttk.Button(window,text='Button in a canvas'))
 
 # EVENTS
 # # list of events https://www.pythontutorial.net/tkinter/tkinter-event-binding/
