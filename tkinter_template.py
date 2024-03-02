@@ -68,35 +68,61 @@ window.geometry('1000x1000')
 # radiotest2 = ttk.Radiobutton(window, text='test radiobutton 2',value='B',command=radio_func, variable=radiotest_var)
 # radiotest2.pack()
 
+# # ttk menu
+# items = ('Ice cream', 'Pizza', 'Broccoli')
+# food_string = tk.StringVar(value=items[0]) # by default ice cream will be selected
+# combo = ttk.Combobox(window, textvariable=food_string)
+# combo['values'] = items
+# combo.pack()
+
+# # ttk spinbox
+# spin_int = tk.IntVar(value=11)
+# spin = ttk.Spinbox(window, 
+#                    from_=3, 
+#                    to= 20, 
+#                    increment=3, 
+#                    command=lambda: print(spin_int.get()),
+#                    textvariable=spin_int) # increment = step
+# # spin['value'] = (1,2,3,4,5)
+# # spin['value'] = ('A', 'B', 'C')
+# spin.pack()
+
 # EVENTS
-# list of events https://www.pythontutorial.net/tkinter/tkinter-event-binding/
+# # list of events https://www.pythontutorial.net/tkinter/tkinter-event-binding/
 
-text = tk.Text(window)
-text.pack()
+# text = tk.Text(window)
+# text.pack()
 
-entry = ttk.Entry(window)
-entry.pack()
+# entry = ttk.Entry(window)
+# entry.pack()
 
-button = ttk.Button(window, text='A button')
-button.pack()
+# button = ttk.Button(window, text='A button')
+# button.pack()
 
-# keyboard inputs
-window.bind('<Alt-KeyPress-a>', lambda event: print('Alt+a event')) # event is automatically passing arg
-window.bind('<Any-KeyPress-a>', lambda event: print('"a" pressed event'))
-window.bind('<KeyPress>', lambda event: print(f'any button pressed {event.char}'))
+# label = ttk.Label(window,  text='my label')
+# label.pack()
 
-# widgets getting changed
+# # keyboard inputs
+# window.bind('<Alt-KeyPress-a>', lambda event: print('Alt+a event')) # event is automatically passing arg
+# window.bind('<Any-KeyPress-a>', lambda event: print('"a" pressed event'))
+# window.bind('<KeyPress>', lambda event: print(f'any button pressed {event.char}'))
 
-# widgets gets (un)selected
-entry.bind('<FocusIn>', lambda event: print('entry field was selected'))
-entry.bind('<FocusOut>', lambda event: print('entry field was unselected'))
-button.bind('<Alt-KeyPress-b>', lambda event: print('Alt+b and button selected event'))
+# # widgets getting changed
+# combo.bind('<<ComboboxSelected>>', 
+#            lambda event: label.configure(text=f'{food_string.get()} is selected')) # to compile uncomment ttk menu and label
+# spin.bind('<<Increment>>', lambda event: print("up")) # to compile uncomment ttk spinbox
+# spin.bind('<<Decrement>>', lambda event: print("down"))
 
-# mouse click / wheel / motion
-def get_pos(event):
-    print(f'x: {event.x} y: {event.y}')
-# window.bind('<Motion>', get_pos) # event is automatically passing arg
-text.bind('<Motion>', get_pos) # event is automatically passing arg
+# # widgets gets (un)selected
+# entry.bind('<FocusIn>', lambda event: print('entry field was selected'))
+# entry.bind('<FocusOut>', lambda event: print('entry field was unselected'))
+# button.bind('<Alt-KeyPress-b>', lambda event: print('Alt+b and button selected event'))
+
+# # mouse click / wheel / motion
+# def get_pos(event):
+#     print(f'x: {event.x} y: {event.y}')
+# # window.bind('<Motion>', get_pos) # event is automatically passing arg
+# text.bind('<Motion>', get_pos) # event is automatically passing arg
 
 # run window - updates the gui and checking  for events
 window.mainloop()
