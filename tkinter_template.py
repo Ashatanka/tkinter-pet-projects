@@ -58,8 +58,11 @@ def radio_func():
     print(check1_var.get())
     check1_var.set(0)
 
+def func(parameter):
+    print(parameter.get())
+
 radiotest_var = tk.StringVar()
-radiotest1 = ttk.Radiobutton(window, text='test radiobutton 1',value='A',command=radio_func, variable=radiotest_var)
+radiotest1 = ttk.Radiobutton(window, text='test radiobutton 1',value='A',command=lambda: func(radiotest_var), variable=radiotest_var)
 radiotest1.pack()
 radiotest2 = ttk.Radiobutton(window, text='test radiobutton 2',value='B',command=radio_func, variable=radiotest_var)
 radiotest2.pack()
