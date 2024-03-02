@@ -14,14 +14,14 @@ def button2_func():
 # create a window
 window = ttk.Window(themename='darkly')
 window.title('Widget\'s connection')
-window.geometry('800x500')
+window.geometry('1000x1000')
 
 # tk text
 text = tk.Text(master=window)
 text.pack()
 
 # ttk entry
-entry_input = tk.StringVar()
+entry_input = tk.StringVar(value='start value')
 entry = ttk.Entry(master=window, textvariable=entry_input)
 entry.pack()
 
@@ -42,6 +42,27 @@ button2.pack(side='left', padx=5)
 
 button3 = ttk.Button(master=frame, text='good', command=lambda: print('goooood'), textvariable=entry_input)
 button3.pack(side='left', padx=5)
+
+# ttk checckbutton
+check1_var = tk.BooleanVar()
+check1 = ttk.Checkbutton(window,
+                         text='test checkbutton',
+                         variable=check1_var,
+                         offvalue=0,
+                         onvalue=1,
+                         command=lambda: print(radiotest_var.get()))
+check1.pack()
+
+# ttk radio buttons - must havee dif values
+def radio_func():
+    print(check1_var.get())
+    check1_var.set(0)
+
+radiotest_var = tk.StringVar()
+radiotest1 = ttk.Radiobutton(window, text='test radiobutton 1',value='A',command=radio_func, variable=radiotest_var)
+radiotest1.pack()
+radiotest2 = ttk.Radiobutton(window, text='test radiobutton 2',value='B',command=radio_func, variable=radiotest_var)
+radiotest2.pack()
 
 # run window - updates the gui and checking  for events
 window.mainloop()
