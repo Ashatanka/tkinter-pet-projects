@@ -45,6 +45,11 @@ def start_draw_pos(event):
 def end_draw_line(event):
     canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
 
+def draw_simply(event):
+    canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
+    x_start_pos.set(event.x)
+    y_start_pos.set(event.y)
+
 canvas.bind('<Motion>', get_pos)
 # def draw_line(event):
 #     canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
@@ -52,9 +57,11 @@ canvas.bind('<Motion>', get_pos)
 x_start_pos = ttk.IntVar()
 y_start_pos = ttk.IntVar()
 
+# draw lines
 canvas.bind('<ButtonPress>', start_draw_pos)
-# canvas.bind('<B1-Motion>', draw_line)
-canvas.bind('<ButtonRelease>', end_draw_line)
+# canvas.bind('<ButtonRelease>', end_draw_line)
+
+canvas.bind('<B1-Motion>', draw_simply)
 
 # canvas.create_polygon((0,0,100,200,300,50, 150,-50), fill='black')  
 # canvas.create_rectangle((50, 20, 100, 200),fill= 'grey', width=10, dash= (4,4), outline='yellow') # width = border width
