@@ -168,25 +168,68 @@ window.geometry('1000x1000')
 # scrolled_text = tk.scrolledtext.ScrolledText(window, width=100, height=5) # or from tkinter import scrolledtext
 # scrolled_text.pack()
 
-# notebook (tab widget)
-notebook = ttk.Notebook(window)
+# # notebook (tab widget)
+# notebook = ttk.Notebook(window)
 
-tab1 = ttk.Frame(notebook)
-label = ttk.Label(tab1, text= 'Text in tab 1')
-button = ttk.Button(tab1, text='Button in tab 1')
-label.pack()
-button.pack()
+# tab1 = ttk.Frame(notebook)
+# label = ttk.Label(tab1, text= 'Text in tab 1')
+# button = ttk.Button(tab1, text='Button in tab 1')
+# label.pack()
+# button.pack()
 
-tab2 = ttk.Frame(notebook)
-label2 = ttk.Label(tab2, text= 'Text in tab 2')
-entry2 = ttk.Entry(tab2)
-label2.pack()
-entry2.pack()
+# tab2 = ttk.Frame(notebook)
+# label2 = ttk.Label(tab2, text= 'Text in tab 2')
+# entry2 = ttk.Entry(tab2)
+# label2.pack()
+# entry2.pack()
 
-notebook.add(tab1, text='tab1')
-notebook.add(tab2, text='tab2')
+# notebook.add(tab1, text='tab1')
+# notebook.add(tab2, text='tab2')
 
-notebook.pack()
+# notebook.pack()
+
+# tk menu
+menu = tk.Menu(window)
+
+sub_menu = tk.Menu(menu, tearoff=False)
+sub_menu.add_command(label='New', command=lambda: print('New File'))
+sub_menu.add_command(label='Open', command=lambda: print('Open File'))
+sub_menu.add_separator()
+sub_menu.add_command(label='Close', command=lambda: print('Close File'))
+menu.add_cascade(label='File', menu=sub_menu)
+
+another_sub_menu = tk.Menu(menu, tearoff=False)
+another_sub_menu.add_command(label='Help entry', command=lambda: print(another_sub_menu_check_string.get()))
+another_sub_menu_check_string = tk.StringVar(value='off')
+another_sub_menu.add_checkbutton(label='check', 
+                                 onvalue='on', 
+                                 offvalue='off', 
+                                 variable=another_sub_menu_check_string, 
+                                 command=lambda: print(another_sub_menu_check_string.get()))
+menu.add_cascade(label='Help', menu=another_sub_menu)
+
+exercise_sub_menu = tk.Menu(menu, tearoff=False)
+radiotest_var = tk.StringVar()
+exercise_sub_menu.add_radiobutton(label='radio1', value='A', variable=radiotest_var)
+exercise_sub_menu.add_radiobutton(label='radio2', value='B', variable=radiotest_var)
+exercise_sub_menu.add_separator()
+sub_sub_menu = tk.Menu(exercise_sub_menu, tearoff=False)
+sub_sub_menu.add_command(label='Option 1', command=lambda: print('Option 1'))
+sub_sub_menu.add_command(label='Option 2', command=lambda: print('Option 2'))
+exercise_sub_menu.add_cascade(label='Other', menu=sub_sub_menu)
+menu.add_cascade(label='Exercice', menu=exercise_sub_menu)
+
+window.configure(menu=menu)
+
+# ttk menu button
+menu_button = ttk.Menubutton(window, text='Menu Button')
+menu_button.pack()
+
+button_sub_menu = tk.Menu(menu_button, tearoff=False)
+button_sub_menu.add_command(label='entry 1', command=lambda: print('test1'))
+button_sub_menu.add_checkbutton(label='check 1')
+menu_button.configure(menu=button_sub_menu)
+
 
 # EVENTS
 # # list of events https://www.pythontutorial.net/tkinter/tkinter-event-binding/
