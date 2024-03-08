@@ -23,10 +23,10 @@ window.geometry('1000x1000')
 # label = ttk.Label(master=window,  text='my label', textvariable=entry_input)
 # label.pack()
 
-# ttk Frame
-frame = ttk.Frame(master=window, width=100, height=200, borderwidth=10, relief=tk.GROOVE)
-frame.pack_propagate(False) # dont change setted width and height by children element
-frame.pack()
+# # ttk Frame
+# frame = ttk.Frame(master=window, width=100, height=200, borderwidth=10, relief=tk.GROOVE)
+# frame.pack_propagate(False) # dont change setted width and height by children element
+# frame.pack()
 
 # # ttk buttons
 # def button_func():
@@ -168,6 +168,25 @@ frame.pack()
 # scrolled_text = tk.scrolledtext.ScrolledText(window, width=100, height=5) # or from tkinter import scrolledtext
 # scrolled_text.pack()
 
+# notebook (tab widget)
+notebook = ttk.Notebook(window)
+
+tab1 = ttk.Frame(notebook)
+label = ttk.Label(tab1, text= 'Text in tab 1')
+button = ttk.Button(tab1, text='Button in tab 1')
+label.pack()
+button.pack()
+
+tab2 = ttk.Frame(notebook)
+label2 = ttk.Label(tab2, text= 'Text in tab 2')
+entry2 = ttk.Entry(tab2)
+label2.pack()
+entry2.pack()
+
+notebook.add(tab1, text='tab1')
+notebook.add(tab2, text='tab2')
+
+notebook.pack()
 
 # EVENTS
 # # list of events https://www.pythontutorial.net/tkinter/tkinter-event-binding/
