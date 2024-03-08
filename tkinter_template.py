@@ -23,9 +23,10 @@ window.geometry('1000x1000')
 # label = ttk.Label(master=window,  text='my label', textvariable=entry_input)
 # label.pack()
 
-# # ttk Frame
-# frame = ttk.Frame(master=window)
-# frame.pack()
+# ttk Frame
+frame = ttk.Frame(master=window, width=100, height=200, borderwidth=10, relief=tk.GROOVE)
+frame.pack_propagate(False) # dont change setted width and height by children element
+frame.pack()
 
 # # ttk buttons
 # def button_func():
@@ -141,31 +142,31 @@ window.geometry('1000x1000')
 # table.bind('<<TreeviewSelect>>', item_select)
 # table.bind('<Delete>', delete_items)
 
-# ttk slider
-scale_float = tk.DoubleVar(value=15)
-scale = ttk.Scale(window, 
-                  command=lambda value: progress.stop(), 
-                  from_=0, 
-                  to=25,
-                  length=300,
-                  orient='vertical',
-                  variable=scale_float)
-scale.pack()
+# # ttk slider
+# scale_float = tk.DoubleVar(value=15)
+# scale = ttk.Scale(window, 
+#                   command=lambda value: progress.stop(), 
+#                   from_=0, 
+#                   to=25,
+#                   length=300,
+#                   orient='vertical',
+#                   variable=scale_float)
+# scale.pack()
 
-# progress bar
-progress = ttk.Progressbar(window, 
-                           maximum=25,
-                           variable=scale_float,
-                           orient='horizontal',
-                           mode='indeterminate', # determinate by default
-                           length=400) 
-progress.pack()
+# # progress bar
+# progress = ttk.Progressbar(window, 
+#                            maximum=25,
+#                            variable=scale_float,
+#                            orient='horizontal',
+#                            mode='indeterminate', # determinate by default
+#                            length=400) 
+# progress.pack()
 
-progress.start(1000) # moves once in 1000ms
+# progress.start(1000) # moves once in 1000ms
 
-# scrolledtext
-scrolled_text = tk.scrolledtext.ScrolledText(window, width=100, height=5) # or from tkinter import scrolledtext
-scrolled_text.pack()
+# # scrolledtext
+# scrolled_text = tk.scrolledtext.ScrolledText(window, width=100, height=5) # or from tkinter import scrolledtext
+# scrolled_text.pack()
 
 
 # EVENTS
