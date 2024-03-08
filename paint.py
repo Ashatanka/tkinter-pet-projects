@@ -15,53 +15,74 @@ canvas.pack()
 frame_btns = ttk.Frame(window, width=990)
 frame_btns.pack()
 
-# mouse
-mouse_pos_string = tk.StringVar(value='x: 0 y: 0')
-mouse_pos = ttk.Label(frame_btns, textvariable=mouse_pos_string)
-mouse_pos.pack(side='left', padx=5)
-
-draw_types = ('draw', 'line')
-draw_type = ttk.StringVar(value=draw_types[0])
 # buttons
-btn_line = ttk.Button(frame_btns, text='line', command=lambda: draw_type.set(draw_types[1]))
+btn_line = ttk.Button(frame_btns, text='line')
 btn_rect = ttk.Button(frame_btns, text='rect')
 btn_oval = ttk.Button(frame_btns, text='oval')
 btn_text = ttk.Button(frame_btns, text='text')
-btn_draw = ttk.Button(frame_btns, text='draw', command=lambda: draw_type.set(draw_types[0]))
+btn_draw = ttk.Button(frame_btns, text='draw')
 btn_line.pack(side='left', padx=5)
 btn_rect.pack(side='left', padx=5)
 btn_oval.pack(side='left', padx=5)
 btn_text.pack(side='left', padx=5)
 btn_draw.pack(side='left', padx=5)
 
+# mouse
+mouse_pos_string = tk.StringVar(value='x: 0 y: 0')
+mouse_pos = ttk.Label(frame_btns, textvariable=mouse_pos_string)
+mouse_pos.pack(side='left', padx=5)
+
 def get_pos(event):
     mouse_pos_string.set(f'x: {event.x} y: {event.y}')
 
-def start_draw_pos(event):
-    x_start_pos.set(event.x)
-    y_start_pos.set(event.y)
-    print(event.x, event.y)
-
-def end_draw_line(event):
-    canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
-
-def draw_simply(event):
-    canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
-    x_start_pos.set(event.x)
-    y_start_pos.set(event.y)
-
 canvas.bind('<Motion>', get_pos)
-# def draw_line(event):
+
+def draw(event):
+    print(event.x, event.y)
+    canvas.create_oval((event.x-brush_size/2, event.y-brush_size/2, event.x+brush_size/2, event.y+brush_size/2), fill=brush_color)
+
+brush_size = 4
+brush_color = 'black'
+canvas.bind('<B1-Motion>', draw)
+
+# def start_draw_pos(event):
+#     x_start_pos.set(event.x)
+#     y_start_pos.set(event.y)
+#     print(event.x, event.y)
+
+# def end_draw_line(event):
+#     print((x_start_pos.get(), y_start_pos.get(), event.x, event.y))
 #     canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
 
-x_start_pos = ttk.IntVar()
-y_start_pos = ttk.IntVar()
+# def draw_simply(event):
+#     canvas.create_line((x_start_pos.get(), y_start_pos.get(), event.x, event.y), fill='black')
+#     x_start_pos.set(event.x)
+#     y_start_pos.set(event.y)
 
-# draw lines
-canvas.bind('<ButtonPress>', start_draw_pos)
-# canvas.bind('<ButtonRelease>', end_draw_line)
+# def check_draw_type(event):
+#     print('ok')
+#     if draw_type.get() == draw_types[0]:
+#         print(draw_type.get())
+#         x_start_pos.set(event.x)
+#         y_start_pos.set(event.y)
+#         canvas.bind('<B1-Motion>', draw_simply)
+#     elif draw_type.get() == draw_types[1]:
+#         print(draw_type.get())
+#         x_start_pos.set(event.x)
+#         y_start_pos.set(event.y)
+#         canvas.bind('<ButtonRelease>', end_draw_line)
 
-canvas.bind('<B1-Motion>', draw_simply)
+
+
+# x_start_pos = ttk.IntVar()
+# y_start_pos = ttk.IntVar()
+
+# # draw lines
+# canvas.bind('<ButtonPress>', check_draw_type)
+# canvas.bind('<ButtonPress>', start_draw_pos)
+# # canvas.bind('<ButtonRelease>', end_draw_line)
+
+# canvas.bind('<B1-Motion>', draw_simply)
 
 # canvas.create_polygon((0,0,100,200,300,50, 150,-50), fill='black')  
 # canvas.create_rectangle((50, 20, 100, 200),fill= 'grey', width=10, dash= (4,4), outline='yellow') # width = border width
