@@ -7,7 +7,37 @@ from random import choice # to pick 1 random value from list
 window = ttk.Window(themename='darkly')
 # window = ttk.Window(themename='flatly')
 window.title('Widget\'s connection')
-window.geometry('1000x1000')
+window_height = 1000
+window_width = 1000
+left = int(window.winfo_screenwidth()/2 - window_width/2)
+top = int(window.winfo_screenheight()/2 - window_height/2)
+window.geometry(f'{window_width}x{window_height}+{left}+{top}') # widthxheight+left+top
+window.iconbitmap('images\/bee_icon-icons.com_60722.ico')
+
+# # window sizes
+# window.minsize(200, 100)
+# window.maxsize(1000, 1000)
+# window.resizable(True, False) #scale x, scale y
+
+# screen attributes
+print(window.winfo_screenwidth()) # monitor x size
+print(window.winfo_screenheight()) # monitor y size
+
+# window attributes
+window.attributes('-alpha', 0.5) # tranceparency
+window.attributes('-topmost', True) # always on top of other windows
+
+# security event
+window.bind('<Escape>', lambda event: window.quit()) # quit when escaape is pressed
+# window.attributes('-disable', True) # we cant interact with window anymore
+# window.attributes('-fullscreen', True)
+
+# title bar
+window.overrideredirect(True) # hide menu off the window
+grip = ttk.Sizegrip(window)
+# grip.pack(side='bottom', anchor='e') # anchor = 'east' position of bottom. n, ne, e, se, s, sw, w, nw, or center
+grip.place(relx=1.0, rely=1.0, anchor='se') # south east
+
 
 # WIDGET TYPES AND VAR TYPES
 # # tk text
@@ -188,47 +218,47 @@ window.geometry('1000x1000')
 
 # notebook.pack()
 
-# tk menu
-menu = tk.Menu(window)
+# # tk menu
+# menu = tk.Menu(window)
 
-sub_menu = tk.Menu(menu, tearoff=False)
-sub_menu.add_command(label='New', command=lambda: print('New File'))
-sub_menu.add_command(label='Open', command=lambda: print('Open File'))
-sub_menu.add_separator()
-sub_menu.add_command(label='Close', command=lambda: print('Close File'))
-menu.add_cascade(label='File', menu=sub_menu)
+# sub_menu = tk.Menu(menu, tearoff=False)
+# sub_menu.add_command(label='New', command=lambda: print('New File'))
+# sub_menu.add_command(label='Open', command=lambda: print('Open File'))
+# sub_menu.add_separator()
+# sub_menu.add_command(label='Close', command=lambda: print('Close File'))
+# menu.add_cascade(label='File', menu=sub_menu)
 
-another_sub_menu = tk.Menu(menu, tearoff=False)
-another_sub_menu.add_command(label='Help entry', command=lambda: print(another_sub_menu_check_string.get()))
-another_sub_menu_check_string = tk.StringVar(value='off')
-another_sub_menu.add_checkbutton(label='check', 
-                                 onvalue='on', 
-                                 offvalue='off', 
-                                 variable=another_sub_menu_check_string, 
-                                 command=lambda: print(another_sub_menu_check_string.get()))
-menu.add_cascade(label='Help', menu=another_sub_menu)
+# another_sub_menu = tk.Menu(menu, tearoff=False)
+# another_sub_menu.add_command(label='Help entry', command=lambda: print(another_sub_menu_check_string.get()))
+# another_sub_menu_check_string = tk.StringVar(value='off')
+# another_sub_menu.add_checkbutton(label='check', 
+#                                  onvalue='on', 
+#                                  offvalue='off', 
+#                                  variable=another_sub_menu_check_string, 
+#                                  command=lambda: print(another_sub_menu_check_string.get()))
+# menu.add_cascade(label='Help', menu=another_sub_menu)
 
-exercise_sub_menu = tk.Menu(menu, tearoff=False)
-radiotest_var = tk.StringVar()
-exercise_sub_menu.add_radiobutton(label='radio1', value='A', variable=radiotest_var)
-exercise_sub_menu.add_radiobutton(label='radio2', value='B', variable=radiotest_var)
-exercise_sub_menu.add_separator()
-sub_sub_menu = tk.Menu(exercise_sub_menu, tearoff=False)
-sub_sub_menu.add_command(label='Option 1', command=lambda: print('Option 1'))
-sub_sub_menu.add_command(label='Option 2', command=lambda: print('Option 2'))
-exercise_sub_menu.add_cascade(label='Other', menu=sub_sub_menu)
-menu.add_cascade(label='Exercice', menu=exercise_sub_menu)
+# exercise_sub_menu = tk.Menu(menu, tearoff=False)
+# radiotest_var = tk.StringVar()
+# exercise_sub_menu.add_radiobutton(label='radio1', value='A', variable=radiotest_var)
+# exercise_sub_menu.add_radiobutton(label='radio2', value='B', variable=radiotest_var)
+# exercise_sub_menu.add_separator()
+# sub_sub_menu = tk.Menu(exercise_sub_menu, tearoff=False)
+# sub_sub_menu.add_command(label='Option 1', command=lambda: print('Option 1'))
+# sub_sub_menu.add_command(label='Option 2', command=lambda: print('Option 2'))
+# exercise_sub_menu.add_cascade(label='Other', menu=sub_sub_menu)
+# menu.add_cascade(label='Exercice', menu=exercise_sub_menu)
 
-window.configure(menu=menu)
+# window.configure(menu=menu)
 
-# ttk menu button
-menu_button = ttk.Menubutton(window, text='Menu Button')
-menu_button.pack()
+# # ttk menu button
+# menu_button = ttk.Menubutton(window, text='Menu Button')
+# menu_button.pack()
 
-button_sub_menu = tk.Menu(menu_button, tearoff=False)
-button_sub_menu.add_command(label='entry 1', command=lambda: print('test1'))
-button_sub_menu.add_checkbutton(label='check 1')
-menu_button.configure(menu=button_sub_menu)
+# button_sub_menu = tk.Menu(menu_button, tearoff=False)
+# button_sub_menu.add_command(label='entry 1', command=lambda: print('test1'))
+# button_sub_menu.add_checkbutton(label='check 1')
+# menu_button.configure(menu=button_sub_menu)
 
 
 # EVENTS
