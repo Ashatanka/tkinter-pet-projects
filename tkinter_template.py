@@ -110,36 +110,64 @@ window.geometry('1000x1000')
 
 # canvas.create_window((50,100), window=ttk.Button(window,text='Button in a canvas'))
 
-# treeview (table)
-first_col = ['Mary', 'Natalie', 'Sergay', 'Nikita', 'Ivan']
-second_col = ['Sarzhanov', 'Myaskov', 'Mizurev', 'Keller', 'Milovzorov']
-table = ttk.Treeview(window, columns=('first', 'last', 'email'), show='headings')
-table.heading('first', text='Name')
-table.heading('last', text='Surname')
-table.heading('email', text='Email')
-table.pack(fill='both', expand=True)
+# # treeview (table)
+# first_col = ['Mary', 'Natalie', 'Sergay', 'Nikita', 'Ivan']
+# second_col = ['Sarzhanov', 'Myaskov', 'Mizurev', 'Keller', 'Milovzorov']
+# table = ttk.Treeview(window, columns=('first', 'last', 'email'), show='headings')
+# table.heading('first', text='Name')
+# table.heading('last', text='Surname')
+# table.heading('email', text='Email')
+# table.pack(fill='both', expand=True)
 
-for i in range(100):
-    first = choice(first_col)
-    last = choice(second_col)
-    email = f'{first[0]}{last}@email.com'
-    data = (first, last, email)
-    table.insert(parent='', index=0,values=data) # index = string num (from 0)
+# for i in range(100):
+#     first = choice(first_col)
+#     last = choice(second_col)
+#     email = f'{first[0]}{last}@email.com'
+#     data = (first, last, email)
+#     table.insert(parent='', index=0,values=data) # index = string num (from 0)
 
-table.insert(parent='', index=tk.END,values=('XXXXXX', 'YYYYYY', 'ZZZZZZ')) # tk.END = end of the table
+# table.insert(parent='', index=tk.END,values=('XXXXXX', 'YYYYYY', 'ZZZZZZ')) # tk.END = end of the table
 
-def item_select(_):
-    print(table.selection())
-    for i in table.selection():
-        print(table.item(i)['values'])
+# def item_select(_):
+#     print(table.selection())
+#     for i in table.selection():
+#         print(table.item(i)['values'])
 
-def delete_items(_):
-    for i in table.selection():
-        print(i)
-        table.delete(i)
+# def delete_items(_):
+#     for i in table.selection():
+#         print(i)
+#         table.delete(i)
 
-table.bind('<<TreeviewSelect>>', item_select)
-table.bind('<Delete>', delete_items)
+# table.bind('<<TreeviewSelect>>', item_select)
+# table.bind('<Delete>', delete_items)
+
+# ttk slider
+scale_float = tk.DoubleVar(value=15)
+scale = ttk.Scale(window, 
+                  command=lambda value: progress.stop(), 
+                  from_=0, 
+                  to=25,
+                  length=300,
+                  orient='vertical',
+                  variable=scale_float)
+scale.pack()
+
+# progress bar
+progress = ttk.Progressbar(window, 
+                           maximum=25,
+                           variable=scale_float,
+                           orient='horizontal',
+                           mode='indeterminate', # determinate by default
+                           length=400) 
+progress.pack()
+
+progress.start(1000) # moves once in 1000ms
+
+# scrolledtext
+scrolled_text = tk.scrolledtext.ScrolledText(window, width=100, height=5) # or from tkinter import scrolledtext
+scrolled_text.pack()
+
+
 # EVENTS
 # # list of events https://www.pythontutorial.net/tkinter/tkinter-event-binding/
 
