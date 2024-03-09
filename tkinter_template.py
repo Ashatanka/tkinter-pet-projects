@@ -19,25 +19,58 @@ window.iconbitmap('images\/bee_icon-icons.com_60722.ico')
 # window.maxsize(1000, 1000)
 # window.resizable(True, False) #scale x, scale y
 
-# screen attributes
-print(window.winfo_screenwidth()) # monitor x size
-print(window.winfo_screenheight()) # monitor y size
+# # screen attributes
+# print(window.winfo_screenwidth()) # monitor x size
+# print(window.winfo_screenheight()) # monitor y size
 
-# window attributes
-window.attributes('-alpha', 0.5) # tranceparency
-window.attributes('-topmost', True) # always on top of other windows
+# # window attributes
+# window.attributes('-alpha', 0.5) # tranceparency
+# window.attributes('-topmost', True) # always on top of other windows
 
-# security event
-window.bind('<Escape>', lambda event: window.quit()) # quit when escaape is pressed
+# # security event
+# window.bind('<Escape>', lambda event: window.quit()) # quit when escaape is pressed
 # window.attributes('-disable', True) # we cant interact with window anymore
 # window.attributes('-fullscreen', True)
 
 # title bar
-window.overrideredirect(True) # hide menu off the window
+# window.overrideredirect(True) # hide menu off the window
 grip = ttk.Sizegrip(window)
 # grip.pack(side='bottom', anchor='e') # anchor = 'east' position of bottom. n, ne, e, se, s, sw, w, nw, or center
 grip.place(relx=1.0, rely=1.0, anchor='se') # south east
 
+
+# LAYOUTS
+
+label1 = ttk.Label(window, text= 'Label 1', background='red')
+label2 = ttk.Label(window, text= 'Label 2', background='blue')
+
+# pack
+button = ttk.Button(window, text='Button', command=lambda:print('Button pressed'))
+label3 = ttk.Label(window, text='Last of the labels', background='green')
+
+# label1.pack(side='left', expand=True, fill= 'both') # expand = take all availiable space
+# label2.pack(side='right', fill='both')
+label1.pack(expand=True, fill='both', padx=10, pady = 10)
+label2.pack(side='left', expand=True, fill= 'both')
+label3.pack(expand=True, fill= 'both'), 
+button.pack(expand=True, fill= 'both')
+
+# # grid
+# window.columnconfigure(0, weight=1)
+# window.columnconfigure(1, weight=1)
+# window.columnconfigure(2, weight=2)
+# window.rowconfigure(0,weight=1)
+# window.rowconfigure(1,weight=1)
+
+# label1.grid(row=0,column=1,sticky='nsew') # stick to left, right, bottom and top
+# label2.grid(row=1,column=1, columnspan=2, sticky='nsew') # take 2 columns starting on column 1
+
+# # place
+# label1.place(x=100,y=200, width=200,height=100) # top left position
+# # relx: windwow size is from 0 to 1. label pos relative to current win size
+# # relwidth: width relative to current window width
+# # anchor = placing position is pos of topleft coordinates by default. but we can place by center pos, nsew pos
+# label2.place(relx=0.5, rely=0.5, relwidth=0.5, anchor='center') 
 
 # WIDGET TYPES AND VAR TYPES
 # # tk text
