@@ -60,6 +60,8 @@ label2.pack(side='left', expand=True, fill= 'both')
 label3.pack(expand=True, fill= 'both'), 
 button.pack(expand=True, fill= 'both')
 
+
+
 # # grid
 # # window.columnconfigure(0, weight=1)
 # # window.columnconfigure(1, weight=1)
@@ -78,7 +80,18 @@ button.pack(expand=True, fill= 'both')
 # # anchor = placing position is pos of topleft coordinates by default. but we can place by center pos, nsew pos
 # label2.place(relx=0.5, rely=0.5, relwidth=0.5, anchor='center') 
 
+# def toggle_label_place():
+#     global label1_visible
+#     if label1_visible:
+#         label1.place_forget() # label1.grid_forget() for grid
+#         label1_visible = False
+#     else:
+#         label1_visible = True
+#         label1.place(x=100,y=200, width=200,height=100)
 
+# label1_visible = True
+# button = ttk.Button(window, text='Toggle (show/hide) widget', command=toggle_label_place)
+# button.place(relx=0.5, rely=1, relwidth=0.5, anchor='s')
 
 # WIDGET TYPES AND VAR TYPES
 # # tk text
