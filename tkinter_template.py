@@ -41,6 +41,11 @@ grip.place(relx=1.0, rely=1.0, anchor='se') # south east
 
 # LAYOUTS
 
+# note:  widgets are always placed on top of other widgets when they are created (not when they are placed!)
+# label1.lift() = label1.tkraise() - elevates one widget on top of all of the other
+# label1.lift(aboveThis = label2) - elevates label1 on top of label2 only
+# label1.lower()
+
 label1 = ttk.Label(window, text= 'Label 1', background='red')
 label2 = ttk.Label(window, text= 'Label 2', background='blue')
 
@@ -56,9 +61,10 @@ label3.pack(expand=True, fill= 'both'),
 button.pack(expand=True, fill= 'both')
 
 # # grid
-# window.columnconfigure(0, weight=1)
-# window.columnconfigure(1, weight=1)
-# window.columnconfigure(2, weight=2)
+# # window.columnconfigure(0, weight=1)
+# # window.columnconfigure(1, weight=1)
+# window.columnconfigure((0,1), weight=1, uniform = 'a')
+# window.columnconfigure(2, weight=2, uniform = 'a')  # uniform empty cells to be  the same width and height as not empty
 # window.rowconfigure(0,weight=1)
 # window.rowconfigure(1,weight=1)
 
@@ -71,6 +77,8 @@ button.pack(expand=True, fill= 'both')
 # # relwidth: width relative to current window width
 # # anchor = placing position is pos of topleft coordinates by default. but we can place by center pos, nsew pos
 # label2.place(relx=0.5, rely=0.5, relwidth=0.5, anchor='center') 
+
+
 
 # WIDGET TYPES AND VAR TYPES
 # # tk text
